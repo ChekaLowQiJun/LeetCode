@@ -1,0 +1,11 @@
+class Solution:
+    def isPalindrome(self, num: int) -> bool:
+        temp = str(num)
+        i = 0
+        j = len(temp) - 1
+        while i < j:
+            if (temp[i] != temp[j]):
+                return False
+            i+=1
+            j-=1
+        return True
