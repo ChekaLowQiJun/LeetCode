@@ -1,0 +1,27 @@
+lass Solution:
+    def isPalindrome(self, s: str) -> bool:
+        filtered_s = ''
+        for x in s:
+            if x.isalnum():
+                filtered_s += x
+        filtered_s_lowercase = filtered_s.lower()
+        index_from_front = 0
+        index_from_back = len(filtered_s_lowercase) - 1
+        if len(filtered_s_lowercase) % 2 == 0:
+            while index_from_front < index_from_back:
+                if filtered_s_lowercase[index_from_front] == filtered_s_lowercase[index_from_back]:
+                    index_from_front += 1
+                    index_from_back -= 1
+                else:
+                    return False
+            return True
+
+
+        else:
+            while index_from_front != index_from_back:
+                if filtered_s_lowercase[index_from_front] == filtered_s_lowercase[index_from_back]:
+                    index_from_front += 1
+                    index_from_back -= 1
+                else:
+                    return False
+            return True
