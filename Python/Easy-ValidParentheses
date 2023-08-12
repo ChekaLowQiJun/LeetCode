@@ -1,0 +1,21 @@
+class Solution:
+   def isValid(self, s: str) -> bool:
+        list_of_brack = []
+        for x in s:
+            if list_of_brack == [] and x == ')' or list_of_brack == [] and x == '}' or list_of_brack == [] and x == ']':
+                return False
+            if x == '(' or x == "[" or x == '{':
+               list_of_brack.append(x)
+            else:
+                if list_of_brack[-1] == '(' and x == ')':
+                    del(list_of_brack[-1])
+                elif list_of_brack[-1] == '[' and x == ']':
+                    del(list_of_brack[-1])
+                elif list_of_brack[-1] == '{' and x == '}':
+                    del(list_of_brack[-1])
+                else:
+                    return False
+        if len(list_of_brack) > 0:
+            return False
+        else:
+            return True
