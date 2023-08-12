@@ -1,0 +1,6 @@
+SELECT DISTINCT num AS ConsecutiveNums
+FROM (
+    SELECT id , num, LEAD(num,1) OVER() AS 1_num_ahead , LEAD(num,2) OVER() AS 2_num_ahead
+    FROM Logs
+    ) AS temp
+WHERE num = 1_num_ahead AND num = 2_num_ahead;
