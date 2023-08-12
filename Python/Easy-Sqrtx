@@ -1,0 +1,10 @@
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        square_rooted = sqrt(x)
+        ans = str(square_rooted)
+        final_ans = ""
+        for digit in ans:
+            if digit == ".":
+                return final_ans
+            else:
+                final_ans = final_ans + digit
