@@ -1,0 +1,12 @@
+class Solution:
+    def firstBadVersion(self, n):
+        i = 1
+        j = n
+        while i <= j:
+            mid_ver = (i + j)//2 
+            if isBadVersion(mid_ver) and not isBadVersion(mid_ver - 1):
+                return mid_ver
+            elif isBadVersion(mid_ver) and isBadVersion(mid_ver - 1):
+                j = mid_ver - 1
+            else: 
+                i = mid_ver + 1
