@@ -1,0 +1,8 @@
+ELECT Department , Employee , Salary 
+FROM (
+    SELECT e.name AS Employee , e.salary AS Salary , d.name AS Department , DENSE_RANK() OVER( PARTITION BY d.name ORDER BY e.salary DESC ) AS Salary_Rank
+    FROM Employee AS e
+    INNER JOIN Department AS d
+    ON e.departmentId = d.id
+    ) AS Temp
+WHERE Salary_Rank in ( 1 , 2 , 3);
