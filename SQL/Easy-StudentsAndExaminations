@@ -1,0 +1,16 @@
+SELECT s.student_id , s.student_name , s.subject_name , 
+CASE
+ WHEN e.attended_exams IS NULL THEN 0
+ ELSE e.attended_exams END AS attended_exams
+FROM (
+SELECT *
+FROM Students 
+CROSS JOIN Subjects 
+) AS s
+LEFT JOIN (
+    SELECT student_id , subject_name , COUNT(*) AS attended_exams 
+    FROM Examinations
+    GROUP BY student_id , subject_name 
+) AS e
+ON e.student_id = s.student_id AND e.subject_name = s.subject_name
+ORDER BY s.student_id , s.subject_name ASC;
