@@ -1,0 +1,3 @@
+DELETE P
+FROM person AS P , person AS S
+WHERE P.id > S.id AND P.email = S.email;
