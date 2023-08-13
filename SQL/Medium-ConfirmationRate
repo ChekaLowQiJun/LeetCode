@@ -1,0 +1,8 @@
+SELECT user_id , CASE WHEN temp.cfm_rate IS NULL THEN 0.00 ELSE cfm_rate END AS confirmation_rate
+FROM Signups AS s
+LEFT JOIN(
+  SELECT user_id , ROUND(AVG(CASE WHEN action LIKE 'timeout' THEN 0 WHEN action LIKE 'confirmed' THEN 1 END) , 2) AS cfm_rate
+  FROM Confirmations
+  GROUP BY user_id
+) AS temp
+USING(user_id);
